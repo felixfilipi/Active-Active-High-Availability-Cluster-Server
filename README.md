@@ -70,7 +70,76 @@ sudo apt install haproxy
 vim /etc/haproxy/haproxy.cfg
 ```
 
-insert this code
+Copy paste command at haproxy.cfg in this repository to your .cfg
 
+<h3> 11. edit haproxy's default </h3>
+ 
+ ```
+ vim /etc/default/haproxy
+ ```
+ 
+insert this code:
+ 
+ ```
+ ENABLED=1
+ ```
+ 
+<h3>12. Restart the configuration </h3>
+
+ ```
+ sudo systemctl restart haproxy
+ #check_status
+ sudo systemctl status haproxy
+ ```
+
+<h3>12. Install keepalived </h3>
+ 
+ ```
+ sudo apt install getalived
+ ```
+ 
+<h3>13. insert keepalived.conf </h3>
+
+open at 
+ ```
+ vim /etc/keepalived/keepalived.conf
+ ```
+add this code:
+  
+ ```
+ vrrp_script chk_haproxy {
+ script "killall -0 haproxy" # check the haproxy process
+ interval 2 # every 2 seconds
+ weight 2 # add 2 points if OK
+}
+
+ vrrp_instance VI_1 {
+  interface eth0 # interface to monitor
+  state MASTER # MASTER on haproxy1, BACKUP on haproxy2
+  virtual_router_id 51
+  priority 101 # 101 on haproxy1, 100 on haproxy2
+   virtual_ipaddress {
+    192.168.0.100 # virtual ip address 
+   }
+  track_script {
+    chk_haproxy
+  }
+}
 ```
 
+<h3>14. Restart the configuration </h3>
+
+```
+sudo systemctl restart keepalived
+#check_status
+sudo systemctl status keepalived
+```
+<h3>15. Test the floating IP </h3>
+
+```
+ip a
+```
+
+<h3>16. Test your server </h3>
+
+open your ip 192.168.100.35 at browser
