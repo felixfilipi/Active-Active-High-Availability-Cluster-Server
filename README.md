@@ -55,7 +55,7 @@ sudo systemctl status apache2
 <h3>8. create the file check.txt </h3>
 
 ```
-touch /var/www/check.txt
+sudo touch /var/www/check.txt
 ```
 
 <h3>9. Then in Master Node, at Raspi node 1 and Raspi node 2 install haproxy</h3>
@@ -67,7 +67,7 @@ sudo apt install haproxy
 <h3>10. edit haproxy.cfg at </h3>
 
 ```
-vim /etc/haproxy/haproxy.cfg
+sudo vim /etc/haproxy/haproxy.cfg
 ```
 
 Copy paste command at haproxy.cfg in this repository to your .cfg
@@ -75,7 +75,7 @@ Copy paste command at haproxy.cfg in this repository to your .cfg
 <h3> 11. edit haproxy's default </h3>
  
  ```
- vim /etc/default/haproxy
+ sudo vim /etc/default/haproxy
  ```
  
 insert this code:
@@ -102,7 +102,7 @@ insert this code:
 
 open at 
  ```
- vim /etc/keepalived/keepalived.conf
+ sudo vim /etc/keepalived/keepalived.conf
  ```
 add this code:
   
