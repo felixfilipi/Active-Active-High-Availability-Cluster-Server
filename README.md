@@ -35,7 +35,7 @@ LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-A
 You can find default.conf at 
 
 ```
-vi /etc/apache2/sites-available/default
+sudo vim /etc/apache2/sites-available/000-default.conf
 ```
 
 after you open the default.conf, insert this statement:
