@@ -95,7 +95,7 @@ insert this code:
 <h3>12. Install keepalived </h3>
  
  ```
- sudo apt install getalived
+ sudo apt install keepalived
  ```
  
 <h3>13. insert keepalived.conf </h3>
